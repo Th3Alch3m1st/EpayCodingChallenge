@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">EpayCodingChallenge</string>
+    <string name="search">Search</string>
+
+    <string name="nothing_found">Sorry, nothing found</string>
+    <string name="retry">Retry</string>
+</resources>
