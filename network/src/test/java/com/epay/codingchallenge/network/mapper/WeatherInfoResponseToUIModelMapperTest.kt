@@ -1,5 +1,6 @@
 package com.epay.codingchallenge.network.mapper
 
+import com.epay.codingchallenge.network.BuildConfig
 import com.epay.codingchallenge.network.model.*
 import com.epay.codingchallenge.network.testutil.shouldEqual
 import org.junit.Before
@@ -40,7 +41,7 @@ class WeatherInfoResponseToUIModelMapperTest {
                     HourlyItem(
                         weather = listOf(
                             WeatherItem(
-                                icon = "010d",
+                                icon = "10d",
                                 description = "fuzzy clouds",
                                 main = "Cloudy"
                             )
@@ -50,7 +51,7 @@ class WeatherInfoResponseToUIModelMapperTest {
             )
         )
         uiModel.hourly[0].weather.description shouldEqual "fuzzy clouds"
-        uiModel.hourly[0].weather.icon shouldEqual "010d"
+        uiModel.hourly[0].weather.icon shouldEqual "${BuildConfig.ICON_URL}/10d@2x.png"
     }
 
     @Test
@@ -61,7 +62,7 @@ class WeatherInfoResponseToUIModelMapperTest {
                     DailyItem(
                         weather = listOf(
                             WeatherItem(
-                                icon = "04d",
+                                icon = "4d",
                                 description = "broken clouds",
                                 main = "Clouds"
                             )
@@ -71,7 +72,7 @@ class WeatherInfoResponseToUIModelMapperTest {
             )
         )
         uiModel.daily[0].weather.description shouldEqual "broken clouds"
-        uiModel.daily[0].weather.icon shouldEqual "04d"
+        uiModel.daily[0].weather.icon shouldEqual "${BuildConfig.ICON_URL}/4d@2x.png"
     }
 
     @Test

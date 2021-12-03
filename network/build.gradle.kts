@@ -65,8 +65,6 @@ dependencies {
     implementation(Libraries.moshi)
     kapt(Libraries.moshiKotlinCodeGen)
 
-    implementation(Libraries.gson)
-
     implementation(Libraries.loggingInterceptor) {
         this.exclude("org.json", "json")
     }

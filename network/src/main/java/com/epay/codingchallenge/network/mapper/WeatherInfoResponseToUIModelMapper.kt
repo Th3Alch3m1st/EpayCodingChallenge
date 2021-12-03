@@ -1,5 +1,6 @@
 package com.epay.codingchallenge.network.mapper
 
+import com.epay.codingchallenge.network.BuildConfig
 import com.epay.codingchallenge.network.model.*
 
 /**
@@ -15,7 +16,9 @@ class WeatherInfoResponseToUIModelMapper :
                     temp = hourly.temp?.toFloat() ?: 0.0f,
                     weather = WeatherInfoIcon(
                         description = hourly.weather?.getOrNull(0)?.description ?: "",
-                        icon = hourly.weather?.getOrNull(0)?.icon ?: "",
+                        icon = if (!hourly.weather?.getOrNull(0)?.icon.isNullOrEmpty())
+                            "${BuildConfig.ICON_URL}/${hourly.weather?.getOrNull(0)?.icon}@2x.png"
+                        else ""
                     )
                 )
             } ?: mutableListOf(),
@@ -29,7 +32,9 @@ class WeatherInfoResponseToUIModelMapper :
                     humidity = daily.humidity ?: 0,
                     weather = WeatherInfoIcon(
                         description = daily.weather?.getOrNull(0)?.description ?: "",
-                        icon = daily.weather?.getOrNull(0)?.icon ?: ""
+                        icon = if (!daily.weather?.getOrNull(0)?.icon.isNullOrEmpty())
+                            "${BuildConfig.ICON_URL}/${daily.weather?.getOrNull(0)?.icon}@2x.png"
+                        else ""
                     )
                 )
             } ?: mutableListOf()

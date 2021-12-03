@@ -57,11 +57,6 @@ dependencies {
     implementation(AndroidXSupportDependencies.fragmentKtx)
     implementation(AndroidXSupportDependencies.lifecycleRuntimeKTX)
 
-
-    //paging
-    implementation(AndroidXSupportDependencies.pagingRuntime)
-    implementation(AndroidXSupportDependencies.pagingRxJavaSupport)
-
     //navigation
     implementation(AndroidXSupportDependencies.navigationFragmentKtx)
     implementation(AndroidXSupportDependencies.navigationUIKtx)
