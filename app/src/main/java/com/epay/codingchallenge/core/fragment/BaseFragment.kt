@@ -37,14 +37,4 @@ abstract class BaseFragment<DataBinding : ViewDataBinding> : Fragment() {
         dataBinding.lifecycleOwner = viewLifecycleOwner
         return dataBinding.root
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setHasOptionsMenu(true)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu, menu)
-        super.onCreateOptionsMenu(menu,inflater)
-    }
 }
