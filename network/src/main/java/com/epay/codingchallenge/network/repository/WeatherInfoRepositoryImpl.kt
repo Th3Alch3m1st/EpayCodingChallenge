@@ -1,6 +1,5 @@
 package com.epay.codingchallenge.network.repository
 
-import android.util.Log
 import com.epay.codingchallenge.network.NetworkResult
 import com.epay.codingchallenge.network.datasource.WeatherInfoApi
 import com.epay.codingchallenge.network.mapper.Mapper

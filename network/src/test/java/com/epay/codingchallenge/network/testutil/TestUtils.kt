@@ -1,7 +1,10 @@
 package com.epay.codingchallenge.network.testutil
 
+import com.epay.codingchallenge.network.model.WeatherInfoResponse
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
+import okhttp3.Dispatcher
+import okhttp3.OkHttpClient
 import okhttp3.mockwebserver.MockResponse
 import java.io.IOException
 import java.util.concurrent.AbstractExecutorService
@@ -30,7 +33,24 @@ object TestUtils {
         )
     }
 
-    fun immediateExecutorService(): ExecutorService {
+    fun getWeatherInfoTestData(fileName: String): WeatherInfoResponse {
+        val moshi = Moshi.Builder()
+            .build()
+        val jsonAdapter: JsonAdapter<WeatherInfoResponse> = moshi.adapter(WeatherInfoResponse::class.java)
+        val jsonString = readFileToString(TestUtils::class.java, "/$fileName")
+        return jsonAdapter.fromJson(jsonString)!!
+    }
+
+
+    fun getOkHttpClient(): OkHttpClient {
+        return OkHttpClient.Builder()
+            .readTimeout(30, TimeUnit.SECONDS)
+            .writeTimeout(30, TimeUnit.SECONDS)
+            .dispatcher(Dispatcher(immediateExecutorService()))
+            .retryOnConnectionFailure(true).build()
+    }
+
+    private fun immediateExecutorService(): ExecutorService {
         return object : AbstractExecutorService() {
             override fun shutdown() {
             }
@@ -57,4 +77,5 @@ object TestUtils {
             }
         }
     }
+
 }
