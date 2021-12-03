@@ -2,6 +2,11 @@ package com.epay.codingchallenge.network.di
 
 import android.content.Context
 import com.epay.codingchallenge.network.BuildConfig
+import com.epay.codingchallenge.network.datasource.WeatherInfoService
+import com.epay.codingchallenge.network.mapper.Mapper
+import com.epay.codingchallenge.network.mapper.WeatherInfoResponseToUIModelMapper
+import com.epay.codingchallenge.network.model.WeatherInfoResponse
+import com.epay.codingchallenge.network.model.WeatherInfoUIModel
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.ihsanbal.logging.Level
 import com.ihsanbal.logging.LoggingInterceptor
@@ -60,6 +65,17 @@ object NetworkModule {
             .build()
     }
 
+    @Provides
+    @Singleton
+    fun provideWeatherInfoService(retrofit: Retrofit): WeatherInfoService {
+        return retrofit.create(WeatherInfoService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideMapper(): Mapper<WeatherInfoResponse, WeatherInfoUIModel> {
+        return WeatherInfoResponseToUIModelMapper()
+    }
 
 
     @Suppress("SameParameterValue")

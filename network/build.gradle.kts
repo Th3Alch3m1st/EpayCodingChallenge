@@ -19,12 +19,14 @@ android {
 
     buildTypes {
         getByName("debug"){
-            buildConfigField("String", "AUTH_TOKEN", "\"coding-puzzle-client-449cc9d\"")
-            buildConfigField("String", "BASE_URL", "\"https://api-aws-eu-qa-1.auto1-test.com\"")
+            buildConfigField("String", "AUTH_TOKEN", "\"78a07164952e030a671b9350f648cd70\"")
+            buildConfigField("String", "BASE_URL", "\"https://api.openweathermap.org\"")
+            buildConfigField("String", "ICON_URL", "\"http://openweathermap.org/img/wn\"")
         }
         getByName("release") {
-            buildConfigField("String", "AUTH_TOKEN", "\"coding-puzzle-client-449cc9d\"")
-            buildConfigField("String", "BASE_URL", "\"https://api-aws-eu-qa-1.auto1-test.com\"")
+            buildConfigField("String", "AUTH_TOKEN", "\"78a07164952e030a671b9350f648cd70\"")
+            buildConfigField("String", "BASE_URL", "\"https://api.openweathermap.org\"")
+            buildConfigField("String", "ICON_URL", "\"http://openweathermap.org/img/wn\"")
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
