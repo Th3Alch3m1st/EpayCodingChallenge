@@ -1,4 +1,4 @@
-package com.epay.codingchallenge.network
+package com.epay.codingchallenge.network.utils
 
 import retrofit2.HttpException
 import retrofit2.Response

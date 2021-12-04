@@ -10,13 +10,14 @@ data class WeatherInfoUIModel(
 )
 
 data class WeatherInfoHourly(
-    val dateTime: Long,
+    val dateTime: String,
     val temp: Float,
+    val humidity: Int,
     val weather: WeatherInfoIcon
 )
 
 data class WeatherInfoDaily(
-    val dateTime: Long,
+    val dateTime: String,
     val temp: Temperature,
     val humidity: Int,
     val weather: WeatherInfoIcon

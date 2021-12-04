@@ -2,7 +2,7 @@ package com.epay.codingchallenge.network.datasource
 
 import com.epay.codingchallenge.network.BuildConfig
 import com.epay.codingchallenge.network.model.WeatherInfoResponse
-import com.epay.codingchallenge.network.onResponse
+import com.epay.codingchallenge.network.utils.onResponse
 import javax.inject.Inject
 
 /**
@@ -15,7 +15,8 @@ class WeatherInfoApi @Inject constructor(private val service: WeatherInfoService
             "lat" to "$latitude",
             "lon" to "$longitude",
             "exclude" to "minutely,current",
-            "appid" to BuildConfig.AUTH_TOKEN
+            "appid" to BuildConfig.AUTH_TOKEN,
+            "units" to "metric",
         )
         return service.getWeatherInfo(queryMap)
             .onResponse()

@@ -84,6 +84,7 @@ class MainActivity : AppCompatActivity(), FragmentCommunicator {
     private fun initViewPager() {
         val pagerAdapter = WeatherInfoFragmentPagerAdapter(this)
         dataBinding.pager.adapter = pagerAdapter
+        dataBinding.pager.isUserInputEnabled = false
         TabLayoutMediator(dataBinding.tabLayout, dataBinding.pager) { tab, position ->
             tab.text = when (position) {
                 0 -> getString(R.string.city_rio_de_janeiro)

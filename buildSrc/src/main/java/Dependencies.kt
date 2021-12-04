@@ -30,6 +30,8 @@ object Versions {
 
     const val lottie = "4.2.1"
 
+    const val glide = "4.12.0"
+
     const val jUnit = "4.13.2"
     const val extJunit = "1.1.3"
     const val espressoCore = "3.2.0"
@@ -144,4 +146,7 @@ object Libraries {
     val ssp by lazy { "com.intuit.ssp:ssp-android:${Versions.sdpssp}" }
 
     val lottie by lazy { "com.airbnb.android:lottie:${Versions.lottie}" }
+
+    val glide by lazy { "com.github.bumptech.glide:glide:${Versions.glide}" }
+    val glideKapt by lazy { "com.github.bumptech.glide:compiler:${Versions.glide}" }
 }

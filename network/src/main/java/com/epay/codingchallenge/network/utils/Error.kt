@@ -1,4 +1,4 @@
-package com.epay.codingchallenge.network
+package com.epay.codingchallenge.network.utils
 
 import com.squareup.moshi.JsonClass
 

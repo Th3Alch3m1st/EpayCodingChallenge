@@ -8,5 +8,8 @@
     <string name="city_rio_de_janeiro">Rio de Janeiro</string>
     <string name="city_beijing">Beijing</string>
     <string name="city_los_angeles">Los Angeles</string>
+    <string name="x_degree_celsius">%.01f&#xb0;</string>
+    <string name="x_humidity">%d\%%</string>
+    <string name="next_hours">Next hours</string>
 
 </resources>

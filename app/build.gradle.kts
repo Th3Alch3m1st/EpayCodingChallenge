@@ -64,6 +64,10 @@ dependencies {
     //material
     implementation(MaterialDesignDependencies.materialDesign)
 
+    //glide
+    implementation(Libraries.glide)
+    kapt(Libraries.glideKapt)
+
     //coroutine
     implementation(Libraries.coroutineAndroid)
 

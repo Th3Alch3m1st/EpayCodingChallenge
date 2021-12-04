@@ -1,4 +1,4 @@
-package com.epay.codingchallenge.network
+package com.epay.codingchallenge.network.utils
 
 import okhttp3.ResponseBody
 

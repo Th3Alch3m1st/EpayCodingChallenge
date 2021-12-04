@@ -1,11 +1,11 @@
 package com.epay.codingchallenge.network.repository
 
-import com.epay.codingchallenge.network.NetworkResult
+import com.epay.codingchallenge.network.utils.NetworkResult
 import com.epay.codingchallenge.network.datasource.WeatherInfoApi
 import com.epay.codingchallenge.network.mapper.Mapper
 import com.epay.codingchallenge.network.model.WeatherInfoResponse
 import com.epay.codingchallenge.network.model.WeatherInfoUIModel
-import com.epay.codingchallenge.network.onException
+import com.epay.codingchallenge.network.utils.onException
 import javax.inject.Inject
 
 /**

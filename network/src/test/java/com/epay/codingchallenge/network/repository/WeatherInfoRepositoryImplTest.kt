@@ -1,7 +1,7 @@
 package com.epay.codingchallenge.network.repository
 
-import com.epay.codingchallenge.network.NetworkResult
-import com.epay.codingchallenge.network.RequestException
+import com.epay.codingchallenge.network.utils.NetworkResult
+import com.epay.codingchallenge.network.utils.RequestException
 import com.epay.codingchallenge.network.datasource.WeatherInfoApi
 import com.epay.codingchallenge.network.datasource.WeatherInfoServiceTest
 import com.epay.codingchallenge.network.mapper.WeatherInfoResponseToUIModelMapper
@@ -93,7 +93,8 @@ class WeatherInfoRepositoryImplTest{
             )
 
             // Assert
-            Assertions.assertThat((response as NetworkResult.Error).exception).isInstanceOf(RequestException::class.java)
+            Assertions.assertThat((response as NetworkResult.Error).exception).isInstanceOf(
+                RequestException::class.java)
             response.exception.message shouldEqual "Please check your network connection and try again."
         }
     }

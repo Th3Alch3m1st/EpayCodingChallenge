@@ -8,8 +8,9 @@ import androidx.lifecycle.lifecycleScope
 import com.epay.codingchallenge.R
 import com.epay.codingchallenge.core.fragment.BaseFragment
 import com.epay.codingchallenge.databinding.FragmentWeatherInfoBinding
-import com.epay.codingchallenge.network.NetworkResult
+import com.epay.codingchallenge.network.utils.NetworkResult
 import com.epay.codingchallenge.ui.WeatherInfoViewModel
+import com.epay.codingchallenge.utils.autoCleared
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
@@ -24,6 +25,7 @@ class WeatherInfoFragment : BaseFragment<FragmentWeatherInfoBinding>() {
     }
 
     val viewModel: WeatherInfoViewModel by viewModels()
+    var adapterHourlyWeatherInfo: HourlyWeatherInfoAdapter by autoCleared()
 
     override val layoutResourceId: Int
         get() = R.layout.fragment_weather_info
@@ -37,7 +39,8 @@ class WeatherInfoFragment : BaseFragment<FragmentWeatherInfoBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        adapterHourlyWeatherInfo = HourlyWeatherInfoAdapter()
+        dataBinding.rvHourlyWeatherInfo.adapter = adapterHourlyWeatherInfo
         initObserver()
     }
 
@@ -46,14 +49,17 @@ class WeatherInfoFragment : BaseFragment<FragmentWeatherInfoBinding>() {
             viewModel.weatherInfoStateFlow.collect { response ->
                 when (response) {
                     is NetworkResult.Loading -> {
-                        Log.e("error",response.toString())
+                        fragmentCommunicator?.showLoader()
                     }
                     is NetworkResult.Success -> {
-                        Log.e("error",response.data.toString())
+                        fragmentCommunicator?.hideLoader()
+                        Log.e("error", response.data.toString())
+                        adapterHourlyWeatherInfo.setHourlyWeatherInfo(response.data.hourly)
                     }
 
                     is NetworkResult.Error -> {
-                        Log.e("error",response.exception.localizedMessage)
+                        fragmentCommunicator?.hideLoader()
+                        Log.e("error", response.exception.localizedMessage)
                     }
                 }
             }

@@ -1,9 +1,8 @@
 package com.epay.codingchallenge.ui
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.epay.codingchallenge.network.NetworkResult
+import com.epay.codingchallenge.network.utils.NetworkResult
 import com.epay.codingchallenge.network.model.WeatherInfoUIModel
 import com.epay.codingchallenge.network.repository.WeatherInfoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
