@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AlertDialog
@@ -13,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import com.epay.codingchallenge.R
 import com.epay.codingchallenge.core.fragment.FragmentCommunicator
 import com.epay.codingchallenge.databinding.ActivityMainBinding
+import com.epay.codingchallenge.ui.citysearch.CitySearchBottomSheetDialog
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,6 +24,8 @@ import kotlin.properties.Delegates
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), FragmentCommunicator {
     private var dataBinding: ActivityMainBinding by Delegates.notNull()
+    private var citySearchDialog: CitySearchBottomSheetDialog? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
@@ -43,8 +45,12 @@ class MainActivity : AppCompatActivity(), FragmentCommunicator {
                 onBackPressed()
                 true
             }
-            R.id.action_search->{
-                Log.e("error","action_search")
+            R.id.action_search -> {
+                if (citySearchDialog?.isVisible == true) {
+                    citySearchDialog?.dismiss()
+                }
+                citySearchDialog = CitySearchBottomSheetDialog()
+                citySearchDialog?.show(supportFragmentManager, "CitySearchBottomSheetDialog")
                 true
             }
             else -> super.onOptionsItemSelected(item)

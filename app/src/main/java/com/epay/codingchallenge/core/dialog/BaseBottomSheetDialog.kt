@@ -1,6 +1,7 @@
 package com.epay.codingchallenge.core.dialog
 
 import android.app.Dialog
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.epay.codingchallenge.R
+import com.epay.codingchallenge.core.fragment.FragmentCommunicator
 import com.epay.codingchallenge.utils.autoCleared
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -19,12 +21,17 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
  */
 abstract class BaseBottomSheetDialog<DataBinding : ViewDataBinding> : BottomSheetDialogFragment() {
     protected var dataBinding: DataBinding by autoCleared()
-
+    protected var fragmentCommunicator: FragmentCommunicator? = null
     /** Override to set layout resource id
      * @return layout resource id
      */
     @get:LayoutRes
     abstract val layoutResourceId: Int
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        fragmentCommunicator = context as? FragmentCommunicator
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +58,6 @@ abstract class BaseBottomSheetDialog<DataBinding : ViewDataBinding> : BottomShee
                 behavior.isHideable = true
                 behavior.skipCollapsed = true
                 behavior.state = BottomSheetBehavior.STATE_EXPANDED
-                behavior.peekHeight = 500
             }
         }
         return dialog

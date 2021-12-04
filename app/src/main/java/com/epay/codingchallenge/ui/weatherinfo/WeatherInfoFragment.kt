@@ -65,6 +65,8 @@ class WeatherInfoFragment : BaseFragment<FragmentWeatherInfoBinding>() {
                     }
                     is NetworkResult.Success -> {
                         fragmentCommunicator?.hideLoader()
+                        dataBinding.cvHourlyWeatherInfo.show()
+                        dataBinding.cvDailyWeatherInfo.show()
                         adapterHourlyWeatherInfo.setHourlyWeatherInfo(response.data.hourly)
                         adapterDailyWeatherInfo.setHourlyWeatherInfo(response.data.daily)
                     }
