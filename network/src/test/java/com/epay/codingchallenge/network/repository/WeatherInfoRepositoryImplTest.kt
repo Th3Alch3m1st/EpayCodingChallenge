@@ -28,7 +28,7 @@ import org.mockito.kotlin.argumentCaptor
 class WeatherInfoRepositoryImplTest{
     companion object{
         const val WEATHER_INFO_HOURLY_LIST_SIZE = 48
-        const val WEATHER_INFO_DAILY_LIST_SIZE = 8
+        const val WEATHER_INFO_DAILY_LIST_SIZE = 5
     }
     @Mock
     lateinit var mockApi: WeatherInfoApi
@@ -74,9 +74,9 @@ class WeatherInfoRepositoryImplTest{
             // Assert
             (response as NetworkResult.Success<WeatherInfoUIModel>).data.daily.size shouldEqual WEATHER_INFO_DAILY_LIST_SIZE
             response.data.hourly.size shouldEqual WEATHER_INFO_HOURLY_LIST_SIZE
-            response.data.hourly[0].dateTime shouldEqual 1638525600
-            response.data.hourly[47].dateTime shouldEqual 1638694800
-            response.data.daily[7].dateTime shouldEqual 1639144800
+            response.data.hourly[0].dateTime shouldEqual "04:00pm\n12/03"
+            response.data.hourly[47].dateTime shouldEqual "03:00pm\n12/05"
+            response.data.daily[4].dateTime shouldEqual "Tue, Dec 07"
         }
     }
 
