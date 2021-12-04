@@ -81,7 +81,7 @@ class WeatherInfoRepositoryImplTest{
     }
 
     @Test
-    fun `test get built date failure`() {
+    fun `test get weather info failure`() {
         runBlocking {
             // Arrange
             failure()
