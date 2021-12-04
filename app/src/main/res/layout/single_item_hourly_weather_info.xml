@@ -34,7 +34,8 @@
             android:textSize="@dimen/_10ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/x_degree_celsius" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_humidity"
@@ -46,7 +47,8 @@
             android:textSize="@dimen/_9ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_temperature" />
+            app:layout_constraintTop_toBottomOf="@id/tv_temperature"
+            tools:text="76%" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_weather_icon"
@@ -57,7 +59,8 @@
             android:layout_marginEnd="@dimen/_12sdp"
             app:layout_constraintEnd_toStartOf="@id/view_divider"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_humidity" />
+            app:layout_constraintTop_toBottomOf="@id/tv_humidity"
+            tools:srcCompat="@drawable/bg_placeholder" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_time"
@@ -65,9 +68,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_4sdp"
             android:text="@{weatherInfo.dateTime}"
+            android:textAlignment="center"
             android:textColor="@color/black_70"
             android:textSize="@dimen/_9ssp"
-            android:textAlignment="center"
             app:layout_constraintEnd_toStartOf="@id/view_divider"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_weather_icon"

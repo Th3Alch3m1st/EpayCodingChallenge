@@ -1,7 +1,6 @@
 package com.epay.codingchallenge.ui.weatherinfo
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -11,6 +10,8 @@ import com.epay.codingchallenge.databinding.FragmentWeatherInfoBinding
 import com.epay.codingchallenge.network.utils.NetworkResult
 import com.epay.codingchallenge.ui.WeatherInfoViewModel
 import com.epay.codingchallenge.utils.autoCleared
+import com.epay.codingchallenge.utils.gone
+import com.epay.codingchallenge.utils.show
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
@@ -24,24 +25,34 @@ class WeatherInfoFragment : BaseFragment<FragmentWeatherInfoBinding>() {
         const val ARG_LONGITUDE = "ARG_LONGITUDE"
     }
 
-    val viewModel: WeatherInfoViewModel by viewModels()
-    var adapterHourlyWeatherInfo: HourlyWeatherInfoAdapter by autoCleared()
+    private val viewModel: WeatherInfoViewModel by viewModels()
+    private var adapterHourlyWeatherInfo: HourlyWeatherInfoAdapter by autoCleared()
+    private var adapterDailyWeatherInfo: DailyWeatherInfoAdapter by autoCleared()
 
     override val layoutResourceId: Int
         get() = R.layout.fragment_weather_info
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val latitude = arguments?.getDouble(ARG_LATITUDE)
-        val longitude = arguments?.getDouble(ARG_LONGITUDE)
-        viewModel.getWeatherInfo(latitude!!, longitude!!)
+        getWeatherInfo()
+        initAdapter()
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapterHourlyWeatherInfo = HourlyWeatherInfoAdapter()
-        dataBinding.rvHourlyWeatherInfo.adapter = adapterHourlyWeatherInfo
+        initRecyclerView()
         initObserver()
+    }
+
+    private fun initAdapter() {
+        adapterHourlyWeatherInfo = HourlyWeatherInfoAdapter()
+        adapterDailyWeatherInfo = DailyWeatherInfoAdapter()
+    }
+
+    private fun initRecyclerView() {
+        dataBinding.rvHourlyWeatherInfo.adapter = adapterHourlyWeatherInfo
+        dataBinding.rvDailyWeatherInfo.adapter = adapterDailyWeatherInfo
     }
 
     private fun initObserver() {
@@ -50,19 +61,39 @@ class WeatherInfoFragment : BaseFragment<FragmentWeatherInfoBinding>() {
                 when (response) {
                     is NetworkResult.Loading -> {
                         fragmentCommunicator?.showLoader()
+                        showHideErrorUI(null)
                     }
                     is NetworkResult.Success -> {
                         fragmentCommunicator?.hideLoader()
-                        Log.e("error", response.data.toString())
                         adapterHourlyWeatherInfo.setHourlyWeatherInfo(response.data.hourly)
+                        adapterDailyWeatherInfo.setHourlyWeatherInfo(response.data.daily)
                     }
 
                     is NetworkResult.Error -> {
                         fragmentCommunicator?.hideLoader()
-                        Log.e("error", response.exception.localizedMessage)
+                        showHideErrorUI(response.exception)
+
                     }
                 }
             }
+        }
+    }
+
+    private fun getWeatherInfo() {
+        val latitude = arguments?.getDouble(ARG_LATITUDE)
+        val longitude = arguments?.getDouble(ARG_LONGITUDE)
+        viewModel.getWeatherInfo(latitude!!, longitude!!)
+    }
+
+    private fun showHideErrorUI(exception: Throwable?) {
+        exception?.let {
+            dataBinding.viewEmpty.root.show()
+            dataBinding.viewEmpty.tvTitle.text = it.localizedMessage
+            dataBinding.viewEmpty.btnTryAgain.setOnClickListener {
+                getWeatherInfo()
+            }
+        } ?: run {
+            dataBinding.viewEmpty.root.gone()
         }
     }
 }
