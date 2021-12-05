@@ -25,16 +25,16 @@ MVVM
 - Full list: https://github.com/Th3Alch3m1st/EpayCodingChallenge/blob/master/buildSrc/src/main/java/Dependencies.kt
 
 ## performance and code style
-- ViewModel separate UI and Data layer. ViewModel allow data to survive configuration changes and improve testabilities.
-- In City search different Grid span handled on orientation changes, In Potrait Mode 2 Grid item loaded and In Landscape mode 3 grid item loadded.
-- In city search Filter class use used to search inside list, it filter data from large list synchronously
+- ViewModel separate UI and Data layer. ViewModel allows data to survive configuration changes and improve testabilities.
+- In City search different Grid spans are handled on orientation changes, In Portrait Mode 2 Grid item loaded and In Landscape mode 3 grid item loaded.
+- In city search Filter class is used to search inside a list, it filters data from a large list asynchronously.
 - Jetpack DataBinding to bind the layouts views and it's null safe.
-- Use Kotlin DSL for gradle management - it help better gradle management in multi module project. And increase readability, provide code navigation and auto suggestions
-- Sperate network repository in different module, to maintain separation of concern design principle
+- Use Kotlin DSL for gradle management - it helps better gradle management in multi module projects. And increase readability, provide code navigation and auto suggestions
+- Separate network repository in different module, to maintain separation of concern design principle
 - Write code maintaining SOLID principle
 - User mapper class to convert network response into UI model
 - Write Unit test and UI test to ensure app stability and performance
-- Write some infix function to increase unit test redability
+- Write some infix function to increase unit test readability
 - Add documentation in UI test to explain test scenario and write short comment for unit test
 
 
