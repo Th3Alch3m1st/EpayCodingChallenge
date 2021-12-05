@@ -36,15 +36,5 @@ class GridItemDecoration constructor(private val spacing: Int, private val spanC
             outRect.top = if (position == 0 || position == 1 || position == 2) 0 else spacing
             outRect.bottom = 0
         }
-
-        val rowPosition = position / spanCount
-        if (view is MaterialCardView) {
-            if (rowPosition % 2 == 0) {
-                view.setCardBackgroundColor(ContextCompat.getColor(view.context, R.color.teal_700))
-            } else {
-                view.setCardBackgroundColor(ContextCompat.getColor(view.context, R.color.purple_300))
-            }
-        }
-
     }
 }

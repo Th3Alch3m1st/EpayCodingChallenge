@@ -40,7 +40,7 @@ class WeatherInfoFragmentTest {
     @Inject
     lateinit var fakeRepositoryImpl: FakeWeatherInfoRepositoryImpl
 
-    lateinit var bundle: Bundle
+    private lateinit var bundle: Bundle
 
     @Before
     fun setUp() {

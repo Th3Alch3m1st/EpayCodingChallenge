@@ -7,7 +7,6 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import com.epay.codingchallenge.R
 import com.epay.codingchallenge.utils.autoCleared
 
 /**

@@ -57,10 +57,6 @@ dependencies {
     implementation(AndroidXSupportDependencies.fragmentKtx)
     implementation(AndroidXSupportDependencies.lifecycleRuntimeKTX)
 
-    //navigation
-    implementation(AndroidXSupportDependencies.navigationFragmentKtx)
-    implementation(AndroidXSupportDependencies.navigationUIKtx)
-
     //material
     implementation(MaterialDesignDependencies.materialDesign)
 
