@@ -1,4 +1,4 @@
-# Coding Challenge at Epay
+# Coding Challenge
 
 ## Screenshots
 <a href="url"><img src="https://user-images.githubusercontent.com/35175271/144740827-b786883a-4cba-4f8a-a093-9726cf1c2adb.png" height="480" width="230" />
